@@ -70,5 +70,6 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem 'rubocop-rails'
 gem 'rubocop'
+gem 'rubocop-rails'
+gem 'devise'
