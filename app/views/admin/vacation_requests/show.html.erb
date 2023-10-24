@@ -1,0 +1,13 @@
+<h3>ФИО: <%= user_name(@vacation_request.user_id) %></h3>
+<h3>Дата начала отпуска: <%= @vacation_request.start_date.strftime('%d.%m.%Y') %></h3>
+<h3>Дата окончания отпуска: <%= @vacation_request.end_date.strftime('%d.%m.%Y') %></h3>
+<% status = { "pending" => "Ожидание", "approved" => "Одобрена", "rejected" => "Отказ" } %>
+<h3>Статус заявки: <%= status[@vacation_request.status] %></h3>
+<% unless @vacation_request.comment.empty? %>
+  <h3>Комментарий: <%= @vacation_request.comment %></h3>
+<% end %>
+<%= button_to 'Одобрить', { controller: 'admin/vacation_requests', action: 'update', id: @vacation_request.id, status: :approved },
+              method: :put, class: 'button' %>
+<%= button_to 'Отказать', { controller: 'admin/vacation_requests', action: 'update', id: @vacation_request.id, status: :rejected },
+              method: :put, class: 'button' %>
+

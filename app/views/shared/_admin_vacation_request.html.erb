@@ -1,0 +1,14 @@
+<body>
+<div class="container">
+  <h2>Список заявок на отпуск</h2>
+  <% obj.each do |request| %>
+    <a class="vacation-request button-request" href="<%= admin_vacation_request_path(request) %>">
+      <p>ФИО: <%= user_name(request.user_id) %></p>
+      <p>Дата начала отпуска: <%= request.start_date.strftime('%d.%m.%Y') %></p>
+      <p>Дата окончания отпуска: <%= request.end_date.strftime('%d.%m.%Y') %></p>
+      <% status = { "pending" => "Ожидание", "approved" => "Одобрена", "rejected" => "Отказ" } %>
+      <p>Статус заявки: <%= status[request.status] %></p>
+    </a>
+  <% end %>
+</div>
+</body>
