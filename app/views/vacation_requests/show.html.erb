@@ -5,6 +5,8 @@
 <% unless @vacation_request.comment.empty? %>
   <h3>Комментарий: <%= @vacation_request.comment %></h3>
 <% end %>
+<% if pending?%>
 <%= link_to "Редактировать", edit_vacation_request_path, class: "button" %>
 <%= button_to 'Удалить', vacation_request_path, method: :delete, data: { turbo_method: :delete },
             class: "button" %>
+<% end %>
