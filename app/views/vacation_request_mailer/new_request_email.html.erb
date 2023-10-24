@@ -1,0 +1,8 @@
+<h1>Информация о заявке:</h1>
+<p>Дата начала отпуска: <%= @vacation_request.start_date.strftime('%d.%m.%Y') %></p>
+<p>Дата окончания отпуска: <%= @vacation_request.end_date.strftime('%d.%m.%Y') %></p>
+<% status = { "pending" => "Ожидание", "approved" => "Одобрена", "rejected" => "Отказ" } %>
+<p>Статус заявки: <%= status[@vacation_request.status] %></p>
+<% unless @vacation_request.comment.empty? %>
+  <p>Комментарий: <%= @vacation_request.comment %></p>
+<% end %>
