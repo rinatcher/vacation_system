@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class VacationRequestsController < ApplicationController
+  include VacationRequestNotifier
   before_action :set_vacation, only: %i[edit update show destroy]
+  helper_method :pending?
 
   def index
     @vacation_requests = VacationRequest.where(user_id: current_user.id)
@@ -31,7 +33,6 @@ class VacationRequestsController < ApplicationController
 
   def update
     if @vacation_request.update(vacation_params)
-      @vacation_request.update(status: 0)
       flash[:notice] = 'Заявка изменена'
       redirect_to vacation_request_path
     else
@@ -44,6 +45,10 @@ class VacationRequestsController < ApplicationController
     @vacation_request.destroy
     flash[:notice] = 'Заявка удалена'
     redirect_to vacation_requests_path
+  end
+
+  def pending?
+    @vacation_request.status == 'pending'
   end
 
   private

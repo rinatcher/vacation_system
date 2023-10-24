@@ -2,6 +2,7 @@
 
 module Admin
   class VacationRequestsController < ApplicationController
+    include VacationRequestNotifier
     before_action :set_vacation, only: %i[show update]
     helper_method :user_name
 
