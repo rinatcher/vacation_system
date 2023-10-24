@@ -11,6 +11,9 @@
   </head>
 
   <body>
+    <%= render 'layouts/navigation' %>
     <%= yield %>
+    <p class="notice success"><%= notice %></p>
+    <p class="alert warning"><%= alert %></p>
   </body>
 </html>
