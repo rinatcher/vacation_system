@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 class VacationRequestsController < ApplicationController
-  before_action :set_vacation, only: %i[show]
+  before_action :set_vacation, only: %i[edit update show destroy]
 
   def index
-    @vacation_requests = VacationRequest.paginate(page: params[:page], per_page: 5).order(created_at: :desc)
+    @vacation_requests = VacationRequest.where(user_id: current_user.id)
+                                        .paginate(page: params[:page], per_page: 3)
+                                        .order(created_at: :desc)
   end
 
   def show; end
@@ -13,8 +15,11 @@ class VacationRequestsController < ApplicationController
     @vacation_request = VacationRequest.new
   end
 
+  def edit; end
+
   def create
     @vacation_request = VacationRequest.new(vacation_params)
+    @vacation_request.user_id = current_user.id
     if @vacation_request.save
       flash[:notice] = 'Заявка отправлена! Ожидайте подтверждения'
       redirect_to vacation_requests_path
@@ -24,6 +29,22 @@ class VacationRequestsController < ApplicationController
     end
   end
 
+  def update
+    if @vacation_request.update(vacation_params)
+      @vacation_request.update(status: 0)
+      flash[:notice] = 'Заявка изменена'
+      redirect_to vacation_request_path
+    else
+      flash[:alert] = 'Что-то пошло не так...'
+      render :edit
+    end
+  end
+
+  def destroy
+    @vacation_request.destroy
+    flash[:notice] = 'Заявка удалена'
+    redirect_to vacation_requests_path
+  end
 
   private
 
@@ -32,7 +53,7 @@ class VacationRequestsController < ApplicationController
   end
 
   def vacation_params
-    params.require(:vacation_request).permit(:start_date, :end_date, :comment)
+    params.require(:vacation_request).permit(:start_date, :end_date, :comment, :user_id)
   end
 end
 

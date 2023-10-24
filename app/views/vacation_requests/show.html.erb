@@ -1,0 +1,10 @@
+<h3>Дата начала отпуска: <%= @vacation_request.start_date.strftime('%d.%m.%Y') %></h3>
+<h3>Дата окончания отпуска: <%= @vacation_request.end_date.strftime('%d.%m.%Y') %></h3>
+<% status = { "pending" => "Ожидание", "approved" => "Одобрена", "rejected" => "Отказ" } %>
+<h3>Статус заявки: <%= status[@vacation_request.status] %></h3>
+<% unless @vacation_request.comment.empty? %>
+  <h3>Комментарий: <%= @vacation_request.comment %></h3>
+<% end %>
+<%= link_to "Редактировать", edit_vacation_request_path, class: "button" %>
+<%= button_to 'Удалить', vacation_request_path, method: :delete, data: { turbo_method: :delete },
+            class: "button" %>
