@@ -11,3 +11,6 @@ AllCops:
     - 'config/**/*'
     - 'script/**/*'
     - 'bin/*'
+
+Style/Documentation:
+  Enabled: false
