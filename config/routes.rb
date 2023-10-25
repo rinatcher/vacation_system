@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :vacation_requests
   end
+  match '*unmatched', to: 'application#not_found_method', via: :all
 end
