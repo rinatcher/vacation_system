@@ -34,9 +34,9 @@ RSpec.describe VacationRequestsController, type: :controller do
   describe 'POST #create' do
     context 'with valid parameters' do
       it 'creates a new VacationRequest' do
-        expect {
+        expect do
           post :create, params: { vacation_request: valid_attributes }
-        }.to change(VacationRequest, :count).by(1)
+        end.to change(VacationRequest, :count).by(1)
       end
 
       it 'redirects to the created vacation_request' do
@@ -89,9 +89,9 @@ RSpec.describe VacationRequestsController, type: :controller do
   describe 'DELETE #destroy' do
     it 'destroys the requested vacation_request' do
       vacation_request = FactoryBot.create(:vacation_request, user: user)
-      expect {
+      expect do
         delete :destroy, params: { id: vacation_request.to_param }
-      }.to change(VacationRequest, :count).by(-1)
+      end.to change(VacationRequest, :count).by(-1)
     end
 
     it 'redirects to the vacation_requests list' do

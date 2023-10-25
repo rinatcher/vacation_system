@@ -61,4 +61,3 @@ class VacationRequestsController < ApplicationController
     params.require(:vacation_request).permit(:start_date, :end_date, :comment, :user_id)
   end
 end
-

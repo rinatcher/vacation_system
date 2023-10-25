@@ -68,11 +68,11 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
-  gem 'rspec-rails'
-  gem 'simplecov', require: false
-  gem 'selenium-webdriver'
   gem 'faker'
+  gem 'rspec-rails'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers'
+  gem 'simplecov', require: false
 end
 
 gem 'devise'

@@ -1,4 +1,3 @@
-# spec/features/authentication_spec.rb
 require 'rails_helper'
 
 RSpec.describe 'Authentication', type: :feature do
@@ -10,9 +9,9 @@ RSpec.describe 'Authentication', type: :feature do
     fill_in 'Email', with: user.email
     field = find('input[name="user[password]"]')
     field.set(user.password)
-    click_button "Вход"
+    click_button 'Вход'
 
-    expect(page).to have_text("Вход выполнен успешно.")
+    expect(page).to have_text('Вход выполнен успешно.')
   end
 
   it 'does not allow a user to sign in with incorrect credentials' do
@@ -20,7 +19,7 @@ RSpec.describe 'Authentication', type: :feature do
     fill_in 'Email', with: user.email
     field = find('input[name="user[password]"]')
     field.set('incorrect_password')
-    click_button "Вход"
+    click_button 'Вход'
 
     expect(page).to have_text('Invalid Email or password')
   end
@@ -30,7 +29,7 @@ RSpec.describe 'Authentication', type: :feature do
     visit root_path
     click_link 'Выход'
 
-    expect(page).to have_text("Выход выполнен успешно.")
+    expect(page).to have_text('Выход выполнен успешно.')
   end
 
   it 'does not allow an unauthorized user to access protected pages' do
