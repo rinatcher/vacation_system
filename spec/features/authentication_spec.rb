@@ -29,7 +29,7 @@ RSpec.describe 'Authentication', type: :feature do
     visit root_path
     click_link 'Выход'
 
-    expect(page).to have_text('Выход выполнен успешно.')
+    expect(page).to have_current_path(new_user_session_path)
   end
 
   it 'does not allow an unauthorized user to access protected pages' do
