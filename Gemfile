@@ -51,6 +51,7 @@ gem 'bootsnap', require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -67,11 +68,15 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
+  gem 'rspec-rails'
+  gem 'simplecov', require: false
   gem 'selenium-webdriver'
+  gem 'faker'
+  gem 'shoulda-matchers'
 end
 
 gem 'devise'
 gem 'rubocop'
 gem 'rubocop-rails'
-gem 'will_paginate'
 gem 'sassc-rails'
+gem 'will_paginate'
